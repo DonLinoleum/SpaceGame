@@ -7,7 +7,7 @@ export const drawAim = () => {
     aimCanvas.height = 20
 
     context.clearRect(0,0,aimCanvas.width,aimCanvas.height)
-    context.strokeStyle = 'black'
+    context.strokeStyle = '#008000'
     context.lineWidth = 2
 
     context.beginPath()

@@ -5,5 +5,7 @@ export function setLight(scene)
     light.position.set(0,10,10)
     scene.add(light)
 
-   
+    const backLight = new THREE.PointLight(0xFF4500,2,2)
+    backLight.position.set(0,0,3)
+    scene.add(backLight)
 }
