@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "space-font";
+  src: url("./src/fonts/Chopsic-K6Dp.ttf");
+}
+
 *{
   margin:0;
   padding:0;
@@ -15,4 +20,26 @@ body {
   transform: translate(-50%,-50%);
   pointer-events: none;
   
+}
+
+#main{display: none;}
+
+.menu{
+  width:100vw;
+  height: 100vh;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu-item{
+  color:azure;
+  font-family:space-font;
+  font-size: 5rem;
+  transition: all 1s ease;
+}
+
+.menu-item:hover{
+  color: cadetblue;
 }

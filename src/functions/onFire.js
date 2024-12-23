@@ -33,7 +33,7 @@ export function onFire(event,state,scene){
     state.lasers.push(laserRight)
     scene.add(laserRight)
 
-    const lightRight = new THREE.PointLight( 0x008000, 10, 10 );
+    const lightRight = new THREE.PointLight( 0x008000, 50, 50);
     lightRight.translateZ(-1)
     if (window.innerWidth > 992)
         lightRight.translateX(-2)
@@ -46,7 +46,7 @@ export function onFire(event,state,scene){
         scene.remove(lightRight);
     }, 100); 
 
-    const lightLeft = new THREE.PointLight( 0x008000, 10, 10 );
+    const lightLeft = new THREE.PointLight( 0x008000, 50, 50);
     lightLeft.translateZ(-1)
     if (window.innerWidth > 992)
         lightLeft.translateX(2)
