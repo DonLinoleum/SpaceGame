@@ -20,7 +20,7 @@ if (startBtn){
     const intervalId = setInterval(() => {
       loadingPercents.innerText = state.loading.total / state.objectsCount * 100 + "%"
       loadingProcces.style.width = state.loading.total / state.objectsCount * 100 + "%"
-      if (state.loading.total / state.objectsCount  * 100 === 100){
+      if (state.loading.total / state.objectsCount  * 100 >= 100){
         loading.style.display = "none"
         gameWindow.style.display = "block"
         state.isBegin = true
