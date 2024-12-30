@@ -17,7 +17,9 @@ export function createAsteroids(scene,state)
             state.asteroids.push(asteroid)
             scene.add(asteroid)
         },
-        xhr=>{console.log((xhr.loaded / xhr.total * 100) + "% loaded")},
+        xhr=>{
+            state.loading = {...state.loading, total : (state.loading.total  + xhr.loaded / xhr.total)}
+        },
         error=>{console.log(error)}
         )
 
@@ -35,7 +37,9 @@ export function createAsteroids(scene,state)
             state.asteroids.push(asteroid)
             scene.add(asteroid)
         },
-        xhr=>{console.log((xhr.loaded / xhr.total * 100) + "% loaded")},
+        xhr=>{
+            state.loading = {...state.loading, total : (state.loading.total  + xhr.loaded / xhr.total)}
+        },
         error=>{console.log(error)}
     )
 
@@ -54,7 +58,9 @@ export function createAsteroids(scene,state)
         state.asteroids.push(asteroid)
         scene.add(asteroid)
     },
-    xhr=>{console.log((xhr.loaded / xhr.total * 100) + "% loaded")},
+    xhr=>{
+        state.loading = {...state.loading, total : (state.loading.total  + xhr.loaded / xhr.total)}
+    },
     error=>{console.log(error)}
     )
     }

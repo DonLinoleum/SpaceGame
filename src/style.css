@@ -3,13 +3,8 @@
   src: url("./src/fonts/Chopsic-K6Dp.ttf");
 }
 
-*{
-  margin:0;
-  padding:0;
-}
-body {
-  cursor: none;
-}
+*{margin:0;padding:0;}
+body {cursor: none;}
 
 #aim{
   position: absolute;
@@ -19,27 +14,93 @@ body {
   height:20px;
   transform: translate(-50%,-50%);
   pointer-events: none;
-  
 }
-
 #main{display: none;}
 
 .menu{
+  flex-direction: column;
   width:100vw;
   height: 100vh;
   background-color: black;
   display: flex;
-  justify-content: center;
   align-items: center;
+  position: relative;
+  background-image: url("./images/bg.jpg");
+  background-size: cover;
 }
-
+.menu-img__wrapper{
+  margin-top: 2rem;
+  width: 200px;
+  height: 200px;
+  margin-bottom:2rem;
+}
+.menu-img__wrapper img, .menu-img_bottom img{width: 100%;height: 100%;}
 .menu-item{
   color:azure;
   font-family:space-font;
-  font-size: 5rem;
-  transition: all 1s ease;
+  font-size: 8rem;
+  transition: color 1s ease;
+}
+.menu-item:hover{color: cadetblue;}
+.menu-img_bottom{
+  overflow: hidden;
+  width: 100%;
+  max-width: 500px;
+  bottom:5%;
+  position: absolute;
 }
 
-.menu-item:hover{
-  color: cadetblue;
+.loading__window{
+  display: none;
+  flex-direction: column;
+  width:100vw;
+  height: 100vh;
+  background-color: black;
+  align-items: center;
+  justify-content: center;
+  color:white;
+  font-family:space-font;
+}
+
+
+.loading_info__wrapper{
+  margin-top:0.5rem;
+  width: 50%;
+  height:50px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-color: rgb(134, 141, 245);
+  overflow: hidden;
+}
+
+
+.loading_info__header{font-size: 2rem;}
+
+.loading_info__progress{
+  position: absolute;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  background-color: rgb(43, 49, 129);
+}
+
+#loading_percents{
+font-size: 2rem;
+z-index: 10;
+}
+
+.space_objects{
+  position: absolute;
+}
+
+@media (max-width:768px){
+  .menu-item{
+    font-size: 5rem;
+  }
+  .loading_info__wrapper{
+    width: 80%;
+  }
 }

@@ -24,8 +24,11 @@ const raycaster = new THREE.Raycaster()
 
 renderer.setSize(window.innerWidth,window.innerHeight);
 document.body.appendChild(renderer.domElement);
-//const loaderTexture = new THREE.TextureLoader();
-//loaderTexture.load('src/images/bg.jpg' , function(texture){scene.background = texture;});
+const loaderTexture = new THREE.TextureLoader();
+loaderTexture.load('src/images/bg3.jpg' , function(texture){
+  texture.colorSpace = THREE.SRGBColorSpace;
+  scene.background = texture;
+});
 
 let state = {
   isBegin:false,
@@ -34,13 +37,14 @@ let state = {
   asteroids:[],
   stars:null,
   intersectionsLaserLights:[],
-  canCreateLaserHitLight:true
+  canCreateLaserHitLight:true,
+  loading:{total:0},
+  objectsCount:4
 }
-createSpaceship(scene,state);
-createAsteroids(scene,state)
+
 drawStars(scene,state)
 setLight(scene)
-start(state)
+start(scene,state)
 
 
 if (window.innerWidth > 992)
