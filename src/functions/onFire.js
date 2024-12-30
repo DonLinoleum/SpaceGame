@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-export function onFire(event,state,scene){
+export function onFire(state,scene){
     const geometry_laser = new THREE.BoxGeometry(0.1,0.1,1.5)
     const material_laser = new THREE.MeshBasicMaterial({
       color: 0x008000, 

@@ -1,4 +1,6 @@
-export function onMouseMove(event,state,aimCanvas,mouse){
+import { onFire } from "./onFire"
+
+export function onMouseMove(event,state,aimCanvas,mouse,scene){
     mouse.x = (event.clientX / window.innerWidth) * 2 - 1
     mouse.y = -(event.clientY / window.innerHeight) *2 + 1
     aimCanvas.style.top = event.clientY + 'px'
@@ -7,4 +9,4 @@ export function onMouseMove(event,state,aimCanvas,mouse){
         state.spaceship.rotation.y = -mouse.x 
         state.spaceship.rotation.x = mouse.y 
     }
-   }
+}

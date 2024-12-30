@@ -16,7 +16,7 @@ if (startBtn){
 
     createSpaceship(scene,state)
     createAsteroids(scene,state)
-    
+
     const intervalId = setInterval(() => {
       loadingPercents.innerText = state.loading.total / state.objectsCount * 100 + "%"
       loadingProcces.style.width = state.loading.total / state.objectsCount * 100 + "%"

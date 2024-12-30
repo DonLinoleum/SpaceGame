@@ -5,13 +5,13 @@ import { onMouseMove } from './functions/onMouseMove';
 import { onTouchMove } from './functions/onToucheMove';
 import { onFire } from './functions/onFire';
 import { generateRandomValues } from './functions/generateRandomValues';
-import { createSpaceship } from './components/spaceship';
-import { createAsteroids } from './components/asteroids';
 import { drawStars } from './components/stars';
 import { start } from './functions/start';
 
 import './style.css'
 import { laserHit } from './functions/laserHits';
+import { asteroidMoveByShot } from './functions/asteroidMoveByShot';
+import { spaceshipDown } from './functions/spaceShipDown';
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75,window.innerWidth / window.innerHeight,0.1,300);
@@ -39,7 +39,11 @@ let state = {
   intersectionsLaserLights:[],
   canCreateLaserHitLight:true,
   loading:{total:0},
-  objectsCount:4
+  objectsCount:4,
+  isMouseButtonDown: false,
+  intervalFuncIdForShot:null,
+  canShot: true,
+  isSpaceshipDown: false
 }
 
 drawStars(scene,state)
@@ -48,16 +52,18 @@ start(scene,state)
 
 
 if (window.innerWidth > 992)
-  window.addEventListener('mousemove',(event)=>{onMouseMove(event,state,aimCanvas,mouse)})
+  window.addEventListener('mousemove',(event)=>{onMouseMove(event,state,aimCanvas,mouse,scene)})
 else
-  window.addEventListener('touchmove',(event)=>{onTouchMove(event,state,aimCanvas,mouse)})
-window.addEventListener('click',(event)=>{onFire(event,state,scene)})
+  window.addEventListener('touchmove',(event)=>{onTouchMove(event,state,aimCanvas,mouse,scene)})
+//window.addEventListener('click',(event)=>{onFire(event,state,scene)})
+window.addEventListener('mousedown',(event)=>{state.isMouseButtonDown = true})
+window.addEventListener('mouseup',(event)=>{state.isMouseButtonDown = false})
 
 function mainLoop(){
   requestAnimationFrame(mainLoop)
   renderer.render(scene,camera)
   if (state.isBegin){
-    
+  
   state.stars.translateZ(5)
   if (state.stars.position.z > 700)
     state.stars.position.z = -200
@@ -72,11 +78,13 @@ function mainLoop(){
           if (laserBoundingBox.intersectsBox(asteroidBoundingBox)){
             scene.remove(el)
             laserHit(scene,state,el)
+            asteroidMoveByShot(asteroid)
           }         
         })
       }
     })
   }
+
   if (state.asteroids.length > 0){
     state.asteroids.forEach(el=>{
       if (el.position.z > 20){
@@ -92,6 +100,11 @@ function mainLoop(){
       el.position.z += el.speed
       el.rotation.x += 0.01
       el.rotation.y += 0.05
+
+      const spaceShipBoundingBox = new THREE.Box3().setFromObject(state.spaceship)
+      const asteroidBoundingBox = new THREE.Box3().setFromObject(el);
+      if (spaceShipBoundingBox.intersectsBox(asteroidBoundingBox))
+        state.isSpaceshipDown = true
     })
   }
 
@@ -100,6 +113,23 @@ function mainLoop(){
       el.position.z += 5
     })
   }
+
+  if (state.isMouseButtonDown){
+      if (state.canShot){
+        onFire(state,scene)
+        state.intervalFuncIdForShot = setInterval(()=>{
+        onFire(state,scene)
+      },200)
+  }
+  state.canShot = false
+  }
+  else{
+    clearInterval(state.intervalFuncIdForShot)
+    state.canShot = true
+  }
+
+  if (state.isSpaceshipDown)
+    spaceshipDown(state)
 }
 }
 drawAim()
