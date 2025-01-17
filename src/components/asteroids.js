@@ -16,9 +16,9 @@ export function createAsteroids(scene,state)
             asteroid.position.z = -200
             state.asteroids.push(asteroid)
             scene.add(asteroid)
+            state.loading = {...state.loading, total : (state.loading.total + 1)}
         },
-        xhr=>{
-            state.loading = {...state.loading, total : (state.loading.total  + xhr.loaded / xhr.total)}
+        xhr=>{            
         },
         error=>{console.log(error)}
         )
@@ -36,9 +36,9 @@ export function createAsteroids(scene,state)
             asteroid.position.z = -300
             state.asteroids.push(asteroid)
             scene.add(asteroid)
+            state.loading = {...state.loading, total : (state.loading.total + 1)}
         },
-        xhr=>{
-            state.loading = {...state.loading, total : (state.loading.total  + xhr.loaded / xhr.total)}
+        xhr=>{   
         },
         error=>{console.log(error)}
     )
@@ -57,9 +57,9 @@ export function createAsteroids(scene,state)
         asteroid.position.z = -300
         state.asteroids.push(asteroid)
         scene.add(asteroid)
+        state.loading = {...state.loading, total : (state.loading.total + 1)}
     },
     xhr=>{
-        state.loading = {...state.loading, total : (state.loading.total  + xhr.loaded / xhr.total)}
     },
     error=>{console.log(error)}
     )

@@ -9,6 +9,9 @@ let loadingProcces = document.querySelector(".loading_info__progress")
 let loadingPercents = document.querySelector('#loading_percents')
 let gameWindow = document.querySelector('#main')
 
+state.scoresDOMelement = document.querySelector('#score_table')
+state.xwinglogoDOMelement = document.querySelector("#x-wing-logo") 
+
 if (startBtn){
   startBtn.addEventListener('click',(event)=>{
     menu.style.display = "none"
@@ -25,6 +28,8 @@ if (startBtn){
         gameWindow.style.display = "block"
         state.isBegin = true
         clearInterval(intervalId)
+        state.scoresDOMelement.innerText = "Scores: " + state.scores
+        state.xwinglogoDOMelement.style.display = 'block'
       }
     }, 100);
   })

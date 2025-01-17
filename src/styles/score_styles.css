@@ -1,0 +1,9 @@
+#score_table{
+    position: absolute;
+    top:2%;
+    left:2%;
+    color:green;
+    font-family:space-font;
+    font-size: 2rem;
+    user-select: none;
+}

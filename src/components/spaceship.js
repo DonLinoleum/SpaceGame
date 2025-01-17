@@ -9,10 +9,9 @@ export function createSpaceship(scene,state){
       if (window.innerWidth <= 992)
         state.spaceship.scale.set(0.2,0.2,0.2)
       scene.add(state.spaceship)
+      state.loading = {...state.loading, total : (state.loading.total + 1)}
       },
-      (xhr)=>{
-        state.loading = {...state.loading, total : (state.loading.total  + xhr.loaded / xhr.total)}
-        let loadingPercents = xhr.loaded / xhr.total * 100    
+      (xhr)=>{   
       },
         (error)=>{
           console.log(error)

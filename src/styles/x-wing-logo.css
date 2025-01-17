@@ -1,0 +1,11 @@
+#x-wing-logo{
+    position: absolute;
+    bottom: 2%;
+    left:2%;
+    display: none;
+    width: 250px;
+}
+
+#x-wing-logo g path{
+    fill: green;
+}

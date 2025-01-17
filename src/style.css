@@ -1,3 +1,5 @@
+@import url('./styles/score_styles.css');
+@import url('./styles/x-wing-logo.css');
 @font-face {
   font-family: "space-font";
   src: url("./src/fonts/Chopsic-K6Dp.ttf");
@@ -94,7 +96,7 @@ z-index: 10;
 
 .space_objects{position: absolute;}
 
-.you_died_msg{
+.final_msg{
   font-family:space-font;
   font-size: 4rem;
   color: #c10024;
@@ -104,6 +106,7 @@ z-index: 10;
   left:40%;
   transition: opacity 1s ease;
   visibility: hidden;
+  user-select: none;
 }
 
 @media (max-width:768px){

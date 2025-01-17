@@ -8,10 +8,13 @@ import { generateRandomValues } from './functions/generateRandomValues';
 import { drawStars } from './components/stars';
 import { start } from './functions/start';
 
-import './style.css'
 import { laserHit } from './functions/laserHits';
 import { asteroidMoveByShot } from './functions/asteroidMoveByShot';
 import { spaceshipDown } from './functions/spaceShipDown';
+import { winGame } from './functions/winGame';
+
+import './style.css'
+
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75,window.innerWidth / window.innerHeight,0.1,300);
@@ -43,7 +46,12 @@ let state = {
   isMouseButtonDown: false,
   intervalFuncIdForShot:null,
   canShot: true,
-  isSpaceshipDown: false
+  isSpaceshipDown: false,
+  isWin: false,
+  scores: 0,
+  scores_to_win: 200,
+  scoresDOMelement: null,
+  xwinglogoDOMelement: null
 }
 
 drawStars(scene,state)
@@ -114,7 +122,7 @@ function mainLoop(){
     })
   }
 
-  if (state.isMouseButtonDown){
+  if (state.isMouseButtonDown && !state.isWin){
       if (state.canShot){
         onFire(state,scene)
         state.intervalFuncIdForShot = setInterval(()=>{
@@ -128,9 +136,12 @@ function mainLoop(){
     state.canShot = true
   }
 
-  if (state.isSpaceshipDown)
+  if (state.isSpaceshipDown && !state.isWin)
     spaceshipDown(state)
+
 }
+  if (state.scores >= state.scores_to_win)
+    winGame(state)
 }
 drawAim()
 mainLoop()
