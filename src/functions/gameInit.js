@@ -13,9 +13,9 @@ export function gameInit(scene,state)
     window.addEventListener('keyup',handleKeyUp)
 
     function handleKeyDown(event) {
-        state.keysPressed[event.key] = true;
+        state.keysPressed[event.code] = true;
       }
     function handleKeyUp(event) {
-        state.keysPressed[event.key] = false;
+        state.keysPressed[event.code] = false;
       }
 }
