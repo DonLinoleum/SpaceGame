@@ -14,7 +14,8 @@ import { spaceshipDown } from './functions/spaceShipDown';
 import { winGame } from './functions/winGame';
 
 import './style.css'
-
+import { gameInit } from './functions/gameInit';
+import { spaceShipMove } from './functions/spaceShipMove';
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75,window.innerWidth / window.innerHeight,0.1,300);
@@ -35,6 +36,7 @@ loaderTexture.load('src/images/bg3.jpg' , function(texture){
 
 let state = {
   isBegin:false,
+  keysPressed:{},
   spaceship:null,
   lasers:[],
   asteroids:[],
@@ -46,36 +48,36 @@ let state = {
   isMouseButtonDown: false,
   intervalFuncIdForShot:null,
   canShot: true,
+  canBeDown: true,
   isSpaceshipDown: false,
+  lerpSpaceshipSpeed: 0.2,
   isWin: false,
   scores: 0,
   scores_to_win: 200,
+  lifes:2,
   scoresDOMelement: null,
   xwinglogoDOMelement: null
 }
-
-drawStars(scene,state)
-setLight(scene)
-start(scene,state)
-
+gameInit(scene,state)
 
 if (window.innerWidth > 992)
   window.addEventListener('mousemove',(event)=>{onMouseMove(event,state,aimCanvas,mouse,scene)})
 else
   window.addEventListener('touchmove',(event)=>{onTouchMove(event,state,aimCanvas,mouse,scene)})
 //window.addEventListener('click',(event)=>{onFire(event,state,scene)})
-window.addEventListener('mousedown',(event)=>{state.isMouseButtonDown = true})
-window.addEventListener('mouseup',(event)=>{state.isMouseButtonDown = false})
+
 
 function mainLoop(){
   requestAnimationFrame(mainLoop)
   renderer.render(scene,camera)
   if (state.isBegin){
+
+  spaceShipMove(state)
   
   state.stars.translateZ(5)
   if (state.stars.position.z > 700)
     state.stars.position.z = -200
-
+  
   if (state.lasers.length > 0){
     state.lasers.forEach(el=>{
       el.translateZ(-0.5)
@@ -111,15 +113,13 @@ function mainLoop(){
 
       const spaceShipBoundingBox = new THREE.Box3().setFromObject(state.spaceship)
       const asteroidBoundingBox = new THREE.Box3().setFromObject(el);
-      if (spaceShipBoundingBox.intersectsBox(asteroidBoundingBox))
+      if (spaceShipBoundingBox.intersectsBox(asteroidBoundingBox) && state.canBeDown)
         state.isSpaceshipDown = true
     })
   }
 
   if (state.intersectionsLaserLights.length > 0){
-    state.intersectionsLaserLights.forEach(el=>{
-      el.position.z += 5
-    })
+    state.intersectionsLaserLights.forEach(el=>{el.position.z += 5})
   }
 
   if (state.isMouseButtonDown && !state.isWin){
@@ -136,7 +136,7 @@ function mainLoop(){
     state.canShot = true
   }
 
-  if (state.isSpaceshipDown && !state.isWin)
+  if (state.isSpaceshipDown && !state.isWin && state.canBeDown)
     spaceshipDown(state)
 
 }

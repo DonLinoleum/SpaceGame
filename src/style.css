@@ -1,22 +1,17 @@
 @import url('./styles/score_styles.css');
 @import url('./styles/x-wing-logo.css');
+@import url('./styles/aim.css');
+@import url('./styles/borderByHitten.css');
+
 @font-face {
   font-family: "space-font";
   src: url("./src/fonts/Chopsic-K6Dp.ttf");
 }
 
 *{margin:0;padding:0;}
-body {cursor: none;}
+body {cursor: none;background-color: black;overflow: hidden;}
+div{user-select: none;}
 
-#aim{
-  position: absolute;
-  top:50%;
-  left:50%;
-  width:20px;
-  height:20px;
-  transform: translate(-50%,-50%);
-  pointer-events: none;
-}
 #main{display: none;}
 
 .menu{

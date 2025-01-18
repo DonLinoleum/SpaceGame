@@ -1,5 +1,7 @@
 import * as THREE from 'three'
 export function onFire(state,scene){
+    let spaceshipPosition = state.spaceship.position.clone()
+
     const geometry_laser = new THREE.BoxGeometry(0.1,0.1,1.5)
     const material_laser = new THREE.MeshBasicMaterial({
       color: 0x008000, 
@@ -8,12 +10,13 @@ export function onFire(state,scene){
       blending:THREE.AdditiveBlending
     })
     const laserLeft = new THREE.Mesh(geometry_laser,material_laser)
+    laserLeft.position.copy(spaceshipPosition)
     laserLeft.rotation.x = state.spaceship.rotation.x * 1.1
     laserLeft.rotation.y = state.spaceship.rotation.y * 1.2
     if (window.innerWidth > 992){
-        laserLeft.translateZ(-1.8)
-        laserLeft.translateX(-2.6)
-        laserLeft.translateY(-0.75)
+        laserLeft.translateZ(-2.5)
+        laserLeft.translateX(-3.0)
+        laserLeft.translateY(0)
     }
     else{
         laserLeft.translateZ(-1.5)
@@ -24,12 +27,13 @@ export function onFire(state,scene){
     scene.add(laserLeft)
 
     const laserRight = new THREE.Mesh(geometry_laser,material_laser)
+    laserRight.position.copy(spaceshipPosition)
     laserRight.rotation.x = state.spaceship.rotation.x 
     laserRight.rotation.y = state.spaceship.rotation.y * 1.2
     if (window.innerWidth > 992){
-        laserRight.translateZ(-1.8)
-        laserRight.translateX(2.6)
-        laserRight.translateY(-0.75)
+        laserRight.translateZ(-2.5)
+        laserRight.translateX(3.0)
+        laserRight.translateY(0)
     }
     else{
         laserRight.translateZ(-1.5)
@@ -40,10 +44,11 @@ export function onFire(state,scene){
     scene.add(laserRight)
 
     const lightRight = new THREE.PointLight( 0x008000, 50, 50);
+    lightRight.position.copy(spaceshipPosition)
     if (window.innerWidth > 992){
-        lightRight.translateZ(-1)
-        lightRight.translateX(-2.6)
-        lightRight.translateY(-0.75)
+        lightRight.translateZ(-1.5)
+        lightRight.translateX(2.6)
+        lightRight.translateY(0)
     }
     else{
         lightRight.translateZ(-1)
@@ -56,10 +61,11 @@ export function onFire(state,scene){
     }, 100); 
 
     const lightLeft = new THREE.PointLight( 0x008000, 50, 50);
+    lightLeft.position.copy(spaceshipPosition)
     if (window.innerWidth > 992){
-        lightLeft.translateZ(-1)
-        lightLeft.translateX(2.6)
-        lightLeft.translateY(-0.75)
+        lightLeft.translateZ(-1.5)
+        lightLeft.translateX(-2.6)
+        lightLeft.translateY(0)
     }
     else{
         lightLeft.translateZ(-1)
