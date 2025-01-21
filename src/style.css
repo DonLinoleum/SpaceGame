@@ -2,6 +2,7 @@
 @import url('./styles/x-wing-logo.css');
 @import url('./styles/aim.css');
 @import url('./styles/borderByHitten.css');
+@import url('./styles/loader.css');
 
 @font-face {
   font-family: "space-font";

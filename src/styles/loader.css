@@ -1,0 +1,14 @@
+/* HTML: <div class="loader"></div> */
+.loader {
+    margin-top:25px;
+    width: 50px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(circle farthest-corner at 5% 50%, #7d77af, #180755);
+    
+    transform-origin: 50% 50%;
+    animation: animate 1.5s infinite linear;
+  }
+  @keyframes animate {
+    100% {transform: rotate(1turn)}
+  }
