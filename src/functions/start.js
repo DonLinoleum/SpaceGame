@@ -3,6 +3,8 @@ import { createSpaceship } from "../components/spaceship"
 
 export function start(scene,state){
 let startBtn = document.querySelector("#start")
+let goModalBtn = document.querySelector('.modal-btn-go')
+let startModal = document.querySelector('.modal_wrapper')
 let menu = document.querySelector(".menu")
 let loading = document.querySelector('.loading__window')
 let loadingProcces = document.querySelector(".loading_info__progress")
@@ -26,10 +28,15 @@ if (startBtn){
       if (state.loading.total / state.objectsCount  * 100 >= 100){
         loading.style.display = "none"
         gameWindow.style.display = "block"
-        state.isBegin = true
         clearInterval(intervalId)
         state.scoresDOMelement.innerText = "Scores: " + state.scores
         state.xwinglogoDOMelement.style.display = 'block'
+        startModal.style.display = 'flex'
+        
+        goModalBtn.addEventListener('click',()=>{
+          startModal.style.display = 'none'
+          state.isBegin = true
+        })
       }
     }, 100);
   })

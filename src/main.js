@@ -1,12 +1,9 @@
 import * as THREE from 'three'
 import { drawAim } from './components/aim';
-import { setLight } from './functions/setLight';
 import { onMouseMove } from './functions/onMouseMove';
 import { onTouchMove } from './functions/onToucheMove';
 import { onFire } from './functions/onFire';
 import { generateRandomValues } from './functions/generateRandomValues';
-import { drawStars } from './components/stars';
-import { start } from './functions/start';
 
 import { laserHit } from './functions/laserHits';
 import { asteroidMoveByShot } from './functions/asteroidMoveByShot';
@@ -62,10 +59,10 @@ gameInit(scene,state)
 
 if (window.innerWidth > 992)
   window.addEventListener('mousemove',(event)=>{onMouseMove(event,state,aimCanvas,mouse,scene)})
-else
+else{
   window.addEventListener('touchmove',(event)=>{onTouchMove(event,state,aimCanvas,mouse,scene)})
-//window.addEventListener('click',(event)=>{onFire(event,state,scene)})
-
+  window.addEventListener('click',(event)=>{onFire(event,state,scene)})
+}
 
 function mainLoop(){
   requestAnimationFrame(mainLoop)

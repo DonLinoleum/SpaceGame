@@ -3,6 +3,7 @@
 @import url('./styles/aim.css');
 @import url('./styles/borderByHitten.css');
 @import url('./styles/loader.css');
+@import url('./styles/modal.css');
 
 @font-face {
   font-family: "space-font";

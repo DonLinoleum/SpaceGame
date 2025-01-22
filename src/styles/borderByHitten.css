@@ -7,7 +7,7 @@
     transition: all 0.4s ease;
 }
 
-.none-border-by-hidden{
+.none-border-by-hitten{
     z-index: -1;
     opacity: 0;
     border: 0px solid red;;
