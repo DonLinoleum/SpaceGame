@@ -64,20 +64,21 @@ else{
   window.addEventListener('click',(event)=>{onFire(event,state,scene)})
 }
 
+let clock = new THREE.Clock()
 function mainLoop(){
-  requestAnimationFrame(mainLoop)
-  renderer.render(scene,camera)
+
+  const deltaTime = clock.getDelta() * 70
   if (state.isBegin){
 
-  spaceShipMove(state)
+  spaceShipMove(state,deltaTime)
   
-  state.stars.translateZ(5)
+  state.stars.translateZ(6 * deltaTime)
   if (state.stars.position.z > 700)
     state.stars.position.z = -200
   
   if (state.lasers.length > 0){
     state.lasers.forEach(el=>{
-      el.translateZ(-0.5)
+      el.translateZ(-0.5 * deltaTime)
       const laserBoundingBox = new THREE.Box3().setFromObject(el);
       if (state.asteroids.length > 0){
         state.asteroids.forEach(asteroid=>{
@@ -104,9 +105,9 @@ function mainLoop(){
           values.randomSize = values.randomSize * 15
         el.scale.set(values.randomSize,values.randomSize,values.randomSize)
       }
-      el.position.z += el.speed
-      el.rotation.x += 0.01
-      el.rotation.y += 0.05
+      el.position.z += el.speed * deltaTime
+      el.rotation.x += 0.01 * deltaTime
+      el.rotation.y += 0.05 * deltaTime
 
       const spaceShipBoundingBox = new THREE.Box3().setFromObject(state.spaceship)
       const asteroidBoundingBox = new THREE.Box3().setFromObject(el);
@@ -116,7 +117,7 @@ function mainLoop(){
   }
 
   if (state.intersectionsLaserLights.length > 0){
-    state.intersectionsLaserLights.forEach(el=>{el.position.z += 5})
+    state.intersectionsLaserLights.forEach(el=>{el.position.z += 5 * deltaTime})
   }
 
   if (state.isMouseButtonDown && !state.isWin){
@@ -139,6 +140,10 @@ function mainLoop(){
 }
   if (state.scores >= state.scores_to_win)
     winGame(state)
+
+  requestAnimationFrame(mainLoop)
+  renderer.render(scene,camera)
 }
+
 drawAim()
 mainLoop()
