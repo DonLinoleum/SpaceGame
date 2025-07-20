@@ -86,7 +86,7 @@ function mainLoop(){
           if (laserBoundingBox.intersectsBox(asteroidBoundingBox)){
             scene.remove(el)
             laserHit(scene,state,el)
-            asteroidMoveByShot(asteroid)
+            asteroidMoveByShot(asteroid,deltaTime)
           }         
         })
       }
