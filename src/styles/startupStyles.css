@@ -1,0 +1,42 @@
+@font-face {
+  font-family: "space-font";
+  src: url("../fonts/Chopsic-K6Dp.ttf");
+}
+
+*{margin:0;padding:0;}
+body {cursor: none;background-color: black;overflow: hidden;}
+div{user-select: none;}
+
+.menu{
+  flex-direction: column;
+  width:100vw;
+  height: 100vh;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  position: relative;
+  background-image: url("../images/bg.jpg");
+  background-size: cover;
+}
+.menu-img__wrapper{
+  margin-top: 2rem;
+  width: 200px;
+  height: 200px;
+  margin-bottom:2rem;
+}
+.menu-img__wrapper img, .menu-img_bottom img{width: 100%;height: 100%;}
+.menu-item{
+  color:azure;
+  font-family:space-font;
+  font-size: 8rem;
+  transition: color 1s ease;
+}
+
+.menu-item:hover{color: cadetblue;}
+.menu-img_bottom{
+  overflow: hidden;
+  width: 100%;
+  max-width: 500px;
+  bottom:5%;
+  position: absolute;
+}
