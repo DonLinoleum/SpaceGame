@@ -13,7 +13,7 @@ import { winGame } from './functions/winGame';
 
 import { gameInit } from './functions/gameInit';
 import { spaceShipMove } from './functions/spaceShipMove';
-import { drawModalStars } from './components/modalStars';
+import { drawModalStars } from './functions/modalStars';
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75,window.innerWidth / window.innerHeight,0.1,300);
@@ -147,4 +147,4 @@ function mainLoop(){
 
 drawAim()
 drawModalStars("modal-spaceship-canvas",40)
-mainLoop()
+requestAnimationFrame(mainLoop)

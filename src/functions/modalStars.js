@@ -1,4 +1,5 @@
-import { ModalCanvasStar } from "./modalCanvasStar"
+import { ModalCanvasStar } from "../components/modalCanvasStar"
+import { Comet } from "../components/modalCometImg"
 
 export function drawModalStars(modalCanvasId,count)
 {
@@ -8,17 +9,26 @@ export function drawModalStars(modalCanvasId,count)
       let stars = []
         for (let i = 0; i < count; i++)
             stars.push(new ModalCanvasStar(inputModalCanvas))
+      let comet = new Comet(inputModalCanvas)   
 
-      function animate()
+      let lastTimeUpdate = 0  
+      function animate(timeUpdate)
       {
+        let timeDelta = (timeUpdate - lastTimeUpdate) / 1000
+        lastTimeUpdate = timeUpdate
         inputModalCanvasCtx.clearRect(0,0,inputModalCanvas.width,inputModalCanvas.height)
         stars.forEach(el=>{
-            el.update(inputModalCanvas)
+            el.update(inputModalCanvas, timeDelta)
             el.draw(inputModalCanvasCtx)
         })
+        if (lastTimeUpdate > 5000)
+          {
+            comet.update(inputModalCanvas, timeDelta)
+            comet.draw(inputModalCanvasCtx)
+          }
         requestAnimationFrame(animate) 
-    }
-      animate()
+      }
+      requestAnimationFrame(animate)
 }
 
 

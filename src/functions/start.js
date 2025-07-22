@@ -1,5 +1,5 @@
 import { createAsteroids } from "../components/asteroids"
-import { savePlayerName } from "../components/modalStars"
+import { savePlayerName } from "./modalStars"
 import { createSpaceship } from "../components/spaceship"
 
 export function start(scene,state){

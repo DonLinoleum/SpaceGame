@@ -4,12 +4,12 @@ export class ModalCanvasStar
         this.x = Math.random() * inputModalCanvas.width
         this.y = Math.random() * inputModalCanvas.height
         this.radius = Math.random() * 1 + 0.05
-        this.vx = Math.random() 
+        this.vx = Math.random() * 150
     }
 
-    update(inputModalCanvas)
+    update(inputModalCanvas,timeDelta)
     {
-        this.x += this.vx
+        this.x += this.vx * timeDelta
         if (this.x > inputModalCanvas.width)
             this.x = 0
     }
