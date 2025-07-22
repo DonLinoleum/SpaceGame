@@ -33,6 +33,7 @@ modalPlayerNameSubmit.addEventListener('click',()=>{
         return
     }
     playerInputModal.style.display = "none"
+    modalPlayerNameTitle.value = null
     savePlayerName(inputPLayerName,state)
     menu.style.display = "none"
     loading.style.display = "flex"
