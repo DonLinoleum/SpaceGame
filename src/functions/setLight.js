@@ -1,6 +1,6 @@
 import * as THREE from "three";
 export function setLight(scene) {
-  const mainlight = new THREE.DirectionalLight(0xa3b3e3, 2);
+  const mainlight = new THREE.DirectionalLight(0xa3b3e3, 3);
   mainlight.position.set(0, 5, 2);
   scene.add(mainlight);
 
