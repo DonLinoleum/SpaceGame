@@ -6,12 +6,12 @@ export function createAsteroids(scene, state) {
     "src/models/asteroid_1_optimized/asteroid_1.glb",
     (glb) => {
       let asteroid = glb.scene;
-      asteroid.traverse((element) => {
+      /*asteroid.traverse((element) => {
         if (element.isMesh) {
           element.castShadow = true;
           element.receiveShadow = true;
         }
-      });
+      });*/
       let maxSize = 0.8;
       let minSize = 0.1;
       let randomSize = Math.random() * (maxSize - minSize) + minSize;
@@ -36,12 +36,12 @@ export function createAsteroids(scene, state) {
     "src/models/asteroid_2_optimized/asteroid_2.glb",
     (glb) => {
       let asteroid = glb.scene;
-      asteroid.traverse((element) => {
+      /* asteroid.traverse((element) => {
         if (element.isMesh) {
           element.castShadow = true;
           element.receiveShadow = true;
         }
-      });
+      });*/
       let maxSize = 0.8;
       let minSize = 0.1;
       let randomSize = Math.random() * (maxSize - minSize) + minSize;
@@ -65,12 +65,12 @@ export function createAsteroids(scene, state) {
     "src/models/asteroid_3_optimized/asteroid_3.glb",
     (glb) => {
       let asteroid = glb.scene;
-      asteroid.traverse((element) => {
+      /* asteroid.traverse((element) => {
         if (element.isMesh) {
           element.castShadow = true;
           element.receiveShadow = true;
         }
-      });
+      });*/
       let maxSize = 0.8;
       let minSize = 0.1;
       let randomSize = Math.random() * (maxSize - minSize) + minSize;
