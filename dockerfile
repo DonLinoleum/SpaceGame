@@ -1,8 +1,19 @@
-FROM node:24-alpine
-
+FROM node:24-alpin AS builder
 WORKDIR /usr/src/space_game
 
-COPY dist server.js ./
+COPY package*.json ./
+RUN npm install
+
+COPY . .
+RUN npm run build
+
+FROM node:24-alpin
+WORKDIR /usr/src/space_game
+
+RUN npm i express
+
+COPY --from=builder /usr/src/space_game/dist ./
+COPY --from=builder /usr/src/space_game/server.js ./
 
 EXPOSE 3001
 
