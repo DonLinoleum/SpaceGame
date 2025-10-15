@@ -5,7 +5,7 @@ import { element } from "three/tsl";
 export function createSpaceship(scene, state) {
   let gltfLoader = new GLTFLoader();
   gltfLoader.load(
-    "src/models/spaceship_optimized/spaceship.glb",
+    "src/models/spaceship/scene.gltf",
     (glb) => {
       state.spaceship = glb.scene;
       /*state.spaceship.traverse((element) => {

@@ -1,8 +1,6 @@
 import "./style.css";
 import * as THREE from "three";
 import { drawAim } from "./components/aim";
-import { onMouseMove } from "./functions/onMouseMove";
-import { onTouchMove } from "./functions/onToucheMove";
 import { onFire } from "./functions/onFire";
 import { generateRandomValues } from "./functions/generateRandomValues";
 
@@ -14,33 +12,28 @@ import { winGame } from "./functions/winGame";
 import { gameInit } from "./functions/gameInit";
 import { spaceShipMove } from "./functions/spaceShipMove";
 import { drawModalStars } from "./functions/modalStars";
+import { cameraOptions } from "./config/mainConfig";
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
-  75,
-  window.innerWidth / window.innerHeight,
-  0.1,
-  300
+  cameraOptions.fov,
+  cameraOptions.aspect,
+  cameraOptions.near,
+  cameraOptions.far
 );
 camera.position.z = 5;
 
 const renderer = new THREE.WebGLRenderer({
+  antialias: true,
   canvas: document.getElementById("main"),
+  powerPreference: "high-performance",
+  depth: true,
 });
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFShadowMap;
 
-const aimCanvas = document.getElementById("aim");
-const mouse = new THREE.Vector2();
-const raycaster = new THREE.Raycaster();
-
-const loaderTexture = new THREE.TextureLoader();
-loaderTexture.load("src/images/bg3.jpg", function (texture) {
-  texture.colorSpace = THREE.SRGBColorSpace;
-  scene.background = texture;
-});
-
+//const raycaster = new THREE.Raycaster();
 let state = {
   isBegin: false,
   playerName: null,
@@ -67,22 +60,13 @@ let state = {
   scoresDOMelement: null,
   xwinglogoDOMelement: null,
 };
-gameInit(scene, state);
-
-if (window.innerWidth > 992)
-  window.addEventListener("mousemove", (event) => {
-    onMouseMove(event, state, aimCanvas, mouse, scene);
-  });
-else
-  window.addEventListener("touchmove", (event) => {
-    onTouchMove(event, state, aimCanvas, mouse, scene);
-  });
+gameInit(scene, state, camera, renderer, THREE);
 
 let clock = new THREE.Clock();
 function mainLoop() {
   const deltaTime = clock.getDelta() * 70;
   if (state.isBegin) {
-    spaceShipMove(state, deltaTime);
+    spaceShipMove(state, deltaTime, THREE);
 
     state.stars.translateZ(6 * deltaTime);
     if (state.stars.position.z > 700) state.stars.position.z = -200;
@@ -98,8 +82,8 @@ function mainLoop() {
             );
             if (laserBoundingBox.intersectsBox(asteroidBoundingBox)) {
               scene.remove(el);
-              laserHit(scene, state, el);
-              asteroidMoveByShot(asteroid, deltaTime);
+              laserHit(scene, state, el, THREE);
+              asteroidMoveByShot(asteroid, deltaTime, THREE);
             }
           });
         }
