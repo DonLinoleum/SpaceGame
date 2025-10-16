@@ -29,9 +29,13 @@ const renderer = new THREE.WebGLRenderer({
   powerPreference: "high-performance",
   depth: true,
 });
-renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFShadowMap;
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.physicallyCorrectLights = true;
+renderer.setSize(window.innerWidth, window.innerHeight);
 
 //const raycaster = new THREE.Raycaster();
 let state = {
