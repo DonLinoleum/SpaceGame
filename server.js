@@ -10,7 +10,6 @@ app.get("/", (req, res) => {
 });
 
 const PORT = 3001;
-const HOST = "127.0.0.1";
-app.listen(PORT, HOST, () => {
-  console.log(`server starts on - ${HOST}:${PORT}`);
+app.listen(PORT, () => {
+  console.log(`server starts on port - ${PORT}`);
 });
