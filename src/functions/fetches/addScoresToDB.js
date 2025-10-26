@@ -8,6 +8,7 @@ export async function addScoresToDB(state) {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
+        "Space-Game": "Space-Game",
       },
       body: JSON.stringify({
         Name: state.playerName,
