@@ -13,6 +13,7 @@ import { gameInit } from "./functions/gameInit";
 import { spaceShipMove } from "./functions/spaceShipMove";
 import { drawModalStars } from "./functions/modalStars";
 import { cameraOptions } from "./config/mainConfig";
+import { addScoresToDB } from "./functions/fetches/addScoresToDB";
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
@@ -40,24 +41,26 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 //const raycaster = new THREE.Raycaster();
 let state = {
   isBegin: false,
+  isWin: false,
+  isMouseButtonDown: false,
+  isSpaceshipDown: false,
+  canShot: true,
+  canBeDown: true,
+  canCreateLaserHitLight: true,
+  canSendScoresData: false,
+  scoresDataHasBeenSended: false,
   playerName: null,
-  lavel: 1,
+  level: 1,
   keysPressed: {},
   spaceship: null,
   lasers: [],
   asteroids: [],
   stars: null,
   intersectionsLaserLights: [],
-  canCreateLaserHitLight: true,
   loading: { total: 0 },
   objectsCount: 4,
-  isMouseButtonDown: false,
   intervalFuncIdForShot: null,
-  canShot: true,
-  canBeDown: true,
-  isSpaceshipDown: false,
   lerpSpaceshipSpeed: 0.2,
-  isWin: false,
   scores: 0,
   scores_to_win: 200,
   lifes: 2,
@@ -67,8 +70,9 @@ let state = {
 gameInit(scene, state, camera, renderer, THREE);
 
 let clock = new THREE.Clock();
-function mainLoop() {
+async function mainLoop() {
   const deltaTime = clock.getDelta() * 70;
+
   if (state.isBegin) {
     spaceShipMove(state, deltaTime, THREE);
 
@@ -144,6 +148,8 @@ function mainLoop() {
       spaceshipDown(state);
   }
   if (state.scores >= state.scores_to_win) winGame(state);
+  if (state.canSendScoresData && !state.scoresDataHasBeenSended)
+    addScoresToDB(state);
 
   requestAnimationFrame(mainLoop);
   renderer.render(scene, camera);
