@@ -6,7 +6,5 @@ export const cameraOptions = {
 };
 
 export const game_api_endpoints = {
-  base_url: "http://127.0.0.1",
-  base_port: "5158",
   add_scores_endpoint: "api/scores",
 };
