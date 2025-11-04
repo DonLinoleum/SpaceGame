@@ -1,29 +1,30 @@
-@import url('./styles/score_styles.css');
-@import url('./styles/x-wing-logo.css');
-@import url('./styles/aim.css');
-@import url('./styles/borderByHitten.css');
-@import url('./styles/loader.css');
-@import url('./styles/modal.css');
+@import url("./styles/score_styles.css");
+@import url("./styles/x-wing-logo.css");
+@import url("./styles/aim.css");
+@import url("./styles/borderByHitten.css");
+@import url("./styles/loader.css");
+@import url("./styles/modal.css");
 
-#main{display: none;}
+#main {
+  display: none;
+}
 
-.loading__window{
+.loading__window {
   display: none;
   flex-direction: column;
-  width:100vw;
+  width: 100vw;
   height: 100vh;
   background-color: black;
   align-items: center;
   justify-content: center;
-  color:white;
-  font-family:space-font;
+  color: white;
+  font-family: space-font;
 }
 
-
-.loading_info__wrapper{
-  margin-top:0.5rem;
+.loading_info__wrapper {
+  margin-top: 0.5rem;
   width: 50%;
-  height:50px;
+  height: 50px;
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -33,9 +34,11 @@
   overflow: hidden;
 }
 
-.loading_info__header{font-size: 2rem;}
+.loading_info__header {
+  font-size: 2rem;
+}
 
-.loading_info__progress{
+.loading_info__progress {
   position: absolute;
   left: 0;
   height: 100%;
@@ -43,31 +46,36 @@
   background-color: rgb(43, 49, 129);
 }
 
-#loading_percents{
-font-size: 2rem;
-z-index: 10;
+#loading_percents {
+  font-size: 2rem;
+  z-index: 10;
 }
 
-.space_objects{position: absolute;}
+.space_objects {
+  position: absolute;
+}
 
-.final_msg{
-  font-family:space-font;
+.final_msg {
+  font-family: space-font;
   font-size: 4rem;
   color: #c10024;
   opacity: 0;
   position: absolute;
-  top:45%;
-  left:40%;
+  top: 45%;
+  left: 40%;
   transition: opacity 1s ease;
   visibility: hidden;
   user-select: none;
 }
 
-@media (max-width:768px){
-  .menu-item{
+@media (max-width: 768px) {
+  .menu-item {
     font-size: 5rem;
   }
-  .loading_info__wrapper{
+  .best-scores__item-menu {
+    font-size: 2rem;
+  }
+  .loading_info__wrapper {
     width: 80%;
   }
 }
