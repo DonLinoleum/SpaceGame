@@ -58,15 +58,23 @@ a {
 .best-scores__item-menu {
   font-size: 3rem;
   position: fixed;
+  bottom: 12%;
+}
+
+.contact__item-menu {
+  font-size: 2rem;
+  position: fixed;
   bottom: 5%;
 }
 
-.best-scores__item-menu a {
+.best-scores__item-menu a,
+.contact__item-menu a {
   transition: color 1s ease;
 }
 
 .menu-item:hover,
-.best-scores__item-menu a:hover {
+.best-scores__item-menu a:hover,
+.contact__item-menu a:hover {
   color: cadetblue;
 }
 
