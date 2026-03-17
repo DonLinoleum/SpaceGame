@@ -1,15 +1,32 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta name="description" content="Amazing space game on X-Wing!" />
+    <meta name="keywords" content="space game, three.js, webgl, x-wing" />
+    <meta name="author" content="catosaurrex@gmail.com" />
+
+    <meta property="og:title" content="Space Game — become pilot of X-Wing" />
+    <meta property="og:description" content="Amazing space game on X-Wing!" />
+    <meta
+      property="og:image"
+      content="https://play-space-game.ru/src/images/xwing.png"
+    />
+    <meta property="og:url" content="https://play-space-game.ru/" />
+    <meta property="og:type" content="website" />
+
     <title>Space game</title>
     <link rel="stylesheet" href="./src/styles/startupStyles.css" />
   </head>
   <body>
+    <h1 style="display: none">Amazing space game on X-Wing!</h1>
     <div class="menu">
-      <div class="menu-img__wrapper"><img src="/src/images/xwing.png" /></div>
+      <div class="menu-img__wrapper">
+        <img src="/src/images/xwing.png" alt="X-Wing Starfighter" />
+      </div>
       <div id="start" class="menu-item">Start</div>
       <div class="menu-item best-scores__item-menu">
         <a href="/scores">Best scores</a>
@@ -25,7 +42,10 @@
       <div class="loader"></div>
     </div>
 
-    <canvas id="main"></canvas>
+    <canvas id="main"
+      >Oops! Your browser can't run this game. To start your X-Wing mission,
+      please make sure WebGL is enabled in your settings.</canvas
+    >
     <canvas id="aim"></canvas>
 
     <div id="score-table"></div>

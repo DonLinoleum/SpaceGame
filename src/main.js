@@ -20,23 +20,34 @@ const camera = new THREE.PerspectiveCamera(
   cameraOptions.fov,
   cameraOptions.aspect,
   cameraOptions.near,
-  cameraOptions.far
+  cameraOptions.far,
 );
 camera.position.z = 5;
 
-const renderer = new THREE.WebGLRenderer({
-  antialias: true,
-  canvas: document.getElementById("main"),
-  powerPreference: "high-performance",
-  depth: true,
-});
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-renderer.shadowMap.enabled = true;
-renderer.shadowMap.type = THREE.PCFShadowMap;
-renderer.outputColorSpace = THREE.SRGBColorSpace;
-renderer.toneMapping = THREE.ACESFilmicToneMapping;
-renderer.physicallyCorrectLights = true;
-renderer.setSize(window.innerWidth, window.innerHeight);
+let renderer;
+try {
+  renderer = new THREE.WebGLRenderer({
+    antialias: true,
+    canvas: document.getElementById("main"),
+    powerPreference: "high-performance",
+    depth: true,
+  });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFShadowMap;
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.physicallyCorrectLights = true;
+  renderer.setSize(window.innerWidth, window.innerHeight);
+} catch (e) {
+  const loadingHeader = document.querySelector(".loading_info__header");
+  if (loadingHeader) {
+    loadingHeader.innerText = "Your browser does not support WebGL";
+    loadingHeader.style.color = "red";
+  }
+  document.querySelector(".loader").style.display = "none";
+  console.error("WebGL Error", e);
+}
 
 //const raycaster = new THREE.Raycaster();
 let state = {
@@ -73,6 +84,8 @@ let clock = new THREE.Clock();
 async function mainLoop() {
   const deltaTime = clock.getDelta() * 70;
 
+  if (!renderer) return;
+
   if (state.isBegin) {
     spaceShipMove(state, deltaTime, THREE);
 
@@ -86,7 +99,7 @@ async function mainLoop() {
         if (state.asteroids.length > 0) {
           state.asteroids.forEach((asteroid) => {
             const asteroidBoundingBox = new THREE.Box3().setFromObject(
-              asteroid
+              asteroid,
             );
             if (laserBoundingBox.intersectsBox(asteroidBoundingBox)) {
               scene.remove(el);
@@ -114,7 +127,7 @@ async function mainLoop() {
         el.rotation.y += 0.05 * deltaTime;
 
         const spaceShipBoundingBox = new THREE.Box3().setFromObject(
-          state.spaceship
+          state.spaceship,
         );
         const asteroidBoundingBox = new THREE.Box3().setFromObject(el);
         if (
@@ -157,4 +170,4 @@ async function mainLoop() {
 
 drawAim();
 drawModalStars("modal-spaceship-canvas", 40);
-requestAnimationFrame(mainLoop);
+if (renderer) requestAnimationFrame(mainLoop);
