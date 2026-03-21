@@ -11,9 +11,9 @@ export async function addScoresToDB(state) {
         "Space-Game": "Space-Game",
       },
       body: JSON.stringify({
-        Name: state.playerName,
-        Level: state.level,
-        Scores: state.scores,
+        name: state.playerName,
+        level: state.level,
+        scores: state.scores,
       }),
     });
     console.log(await resp.json());
