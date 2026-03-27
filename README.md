@@ -1,2 +1,11 @@
+<div align="center">
 # 🚀 SpaceGame
-<img width="800" alt="SPace game gameplay" src="https://github.com/user-attachments/assets/4749b9c8-9a19-45b5-bec3-7afe6fde44f0" />
+<img width="2538" height="800" alt="image" src="https://github.com/user-attachments/assets/ab90e03b-61bc-4ca2-aee4-625e56ad0e3d" />
+</div>
+
+### 🎮 Controls
+| Action | Key |
+| :--- | :--- |
+| **Movement** | `W` `A` `S` `D` |
+| **Shoot** | `Left Click` |
+
