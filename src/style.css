@@ -7,6 +7,7 @@
 
 #main {
   display: none;
+  touch-action: none;
 }
 
 .loading__window {

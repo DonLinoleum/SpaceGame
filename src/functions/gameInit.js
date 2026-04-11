@@ -35,10 +35,27 @@ export function gameInit(scene, state, camera, renderer, THREE) {
     window.addEventListener("mousemove", (event) => {
       onMouseMove(event, state, aimCanvas, mouse, scene);
     });
-  else
-    window.addEventListener("touchmove", (event) => {
-      onTouchMove(event, state, aimCanvas, mouse, scene);
+  else {
+    window.addEventListener(
+      "touchmove",
+      (event) => {
+        if (event.cancelable) event.preventDefault;
+        onTouchMove(event, state, aimCanvas, mouse, scene);
+      },
+      { passive: false },
+    );
+    window.addEventListener(
+      "touchstart",
+      (event) => {
+        if (event.cancelable) event.preventDefault;
+        state.isMouseButtonDown = true;
+      },
+      { passive: false },
+    );
+    window.addEventListener("touchend", (event) => {
+      state.isMouseButtonDown = false;
     });
+  }
 
   function handleKeyDown(event) {
     state.keysPressed[event.code] = true;

@@ -18,9 +18,9 @@ export function onFire(state, scene) {
     laserLeft.translateX(-3.0);
     laserLeft.translateY(0);
   } else {
-    laserLeft.translateZ(-1.5);
-    laserLeft.translateX(-1.2);
-    laserLeft.translateY(-1.0);
+    laserLeft.translateZ(-2.0);
+    laserLeft.translateX(-1.5);
+    laserLeft.translateY(0);
   }
   state.lasers.push(laserLeft);
   scene.add(laserLeft);
@@ -35,9 +35,9 @@ export function onFire(state, scene) {
     laserRight.translateX(3.0);
     laserRight.translateY(0);
   } else {
-    laserRight.translateZ(-1.5);
-    laserRight.translateX(1.2);
-    laserRight.translateY(-1.0);
+    laserRight.translateZ(-2.0);
+    laserRight.translateX(1.5);
+    laserRight.translateY(0);
   }
   state.lasers.push(laserRight);
   scene.add(laserRight);
