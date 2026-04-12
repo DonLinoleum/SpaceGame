@@ -1,11 +1,20 @@
-#x-wing-logo{
-    position: absolute;
-    bottom: 2%;
-    left:2%;
-    display: none;
-    width: 250px;
+#x-wing-logo {
+  position: absolute;
+  bottom: 2%;
+  left: 2%;
+  display: none;
+  width: 250px;
 }
 
-#x-wing-logo g path{
-    fill: green;
+#x-wing-logo g path {
+  fill: green;
+}
+
+@media (max-width: 768px) {
+  #x-wing-logo {
+    width: 35%;
+  }
+  #score-table {
+    font-size: 1.5rem;
+  }
 }

@@ -84,7 +84,10 @@
     </svg>
     <div class="border_by_hitten none-border-by-hitten"></div>
 
-    <div class="final_msg"></div>
+    <div class="final_msg__wrapper">
+      <div class="final_msg"></div>
+      <div id="back_to_menu"><button>Back to Menu</button></div>
+    </div>
 
     <!-- modals begin -->
     <div id="start-modal" class="modal_wrapper">
@@ -113,10 +116,9 @@
           <input class="modal_input" id="player-input-name" />
           <div class="img_wrapper mt50 mb50 canvas_wrapper">
             <canvas id="modal-spaceship-canvas"></canvas>
-            <img
-              id="modal-spaceship-img"
-              src="/src/images/modal_spaceship.png"
-            />
+            <div id="modal-spaceship-img">
+              <img src="/src/images/modal_spaceship.png" />
+            </div>
           </div>
           <div id="player-input-name-modal-go" class="modal-btn-go">GO!</div>
         </div>

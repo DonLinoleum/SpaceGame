@@ -4,17 +4,18 @@ import { createSpaceship } from "../components/spaceship";
 
 export function start(scene, state) {
   let startBtn = document.querySelector("#start");
+  let backToMenuBtn = document.querySelector("#back_to_menu button");
   let goStartModalBtn = document.querySelector("#start-modal-go");
 
   let startModal = document.querySelector("#start-modal");
 
   let playerInputModal = document.querySelector("#player-input-name-modal");
   let modalPlayerNameSubmit = document.getElementById(
-    "player-input-name-modal-go"
+    "player-input-name-modal-go",
   );
   let inputPLayerName = document.getElementById("player-input-name");
   let modalPlayerNameTitle = document.getElementById(
-    "player-input-name-modal__title"
+    "player-input-name-modal__title",
   );
 
   let menu = document.querySelector(".menu");
@@ -29,6 +30,10 @@ export function start(scene, state) {
   startBtn.addEventListener("click", (event) => {
     playerInputModal.style.display = "flex";
     inputPLayerName.focus();
+  });
+
+  backToMenuBtn.addEventListener("click", () => {
+    window.location.reload();
   });
 
   modalPlayerNameSubmit.addEventListener("click", () => {

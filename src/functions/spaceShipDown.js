@@ -15,6 +15,7 @@ export async function spaceshipDown(state) {
     }, 2000);
   } else {
     let final_msg = document.querySelector(".final_msg");
+    let final_msg_wrapper = document.querySelector(".final_msg__wrapper");
     state.spaceship.rotation.x += 0.1;
     state.spaceship.rotation.z += 0.01;
     let directon = new THREE.Vector3(0, 0, -1);
@@ -27,8 +28,8 @@ export async function spaceshipDown(state) {
       state.isBegin = false;
       state.canSendScoresData = true;
       final_msg.innerText = "YOU DIED";
-      final_msg.style.opacity = "1";
-      final_msg.style.visibility = "unset";
+      final_msg_wrapper.style.opacity = "1";
+      final_msg_wrapper.style.visibility = "unset";
     }, 2000);
   }
 }
